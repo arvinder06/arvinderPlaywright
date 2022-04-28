@@ -38,3 +38,17 @@ console.log(marks2.indexOf(12))  // Find the index of a particular value in arra
 console.log(marks2.includes(12)) //true
 console.log(marks2.includes(102)) //false
 
+
+//reduce Filter Map
+let total = marks2.reduce((sum, marksAll) => sum + marksAll, 0)
+console.log(total)
+
+
+//Filter the array with condition
+var scores = [10, 33, 2, 12, 4, 6, 57, 77, 80]
+let evenScores = scores.filter(score => score % 2 == 0)
+console.log(evenScores)
+
+// Map Array function
+let multiplyByThree = scores.map(score => score * 3)
+console.log(multiplyByThree)
