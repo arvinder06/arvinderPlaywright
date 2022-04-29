@@ -10,7 +10,7 @@ const config = {
   reporter: 'html',
   use: {
     // Test properties/metadata like browser,retries etc
-    browserName: 'webkit',
+    browserName: 'chromium',
     headless: false
   },
 };

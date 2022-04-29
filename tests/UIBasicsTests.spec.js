@@ -14,24 +14,57 @@ test('TC001_First PlayWright Test with manual context', async ({ browser }) => {
 });
 
 //only this test will run with test.only, very useful in developing one test and running only that one
-test.only('TC002_Test with default context', async ({ page }) => {
+test.only('TC002_Test with default context Rahul Shetty Academy', async ({ page }) => {
+
+    // Locators
     const userNameLocator = page.locator('input[name=username]');
     const passwordLocator = page.locator('input[name=password]');
+    const signinLocator = page.locator('input[name=signin]');
+    const loginErrorTextLocator = page.locator("div[style*='display']");
 
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
     await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
 
     //Enter Credentials
-    await userNameLocator.type("rahulshetty");
-    await passwordLocator.type("learning");
-    await page.locator('input[name=signin]').click();
+    await userNameLocator.type("rahulshettyacademy");
+    await passwordLocator.type("learningsss");
+
+    await signinLocator.click();
 
     //Get error message from page
 
-    console.log(await page.locator("div[style*='display']").textContent()); //this is like gettext() in selenium
-    await expect(page.locator("div[style*='display']")).toContainText('Incorrect'); //To Contain Text in locator
-
+    console.log(await loginErrorTextLocator.textContent()); //this is like gettext() in selenium
+    await expect(loginErrorTextLocator).toContainText('Incorrect'); //To Contain Text in locator
+    await page.waitForTimeout(5000)
     //To clear a text box and type in the vaule again
     await passwordLocator.fill("")
-    await passwordLocator.fill("learning2") // Here fill() will act same as type()
+    await passwordLocator.fill("learning") // Here fill() will act same as type()
+
+    await Promise.all(
+        [
+            page.waitForNavigation(),
+            signinLocator.click(),
+        ]
+    );
+
+    // await page.waitForTimeout(5000) // For har coded wait
+
+    // Multiple objects handeling
+    const cardTitleLocator = await page.locator('.card-body a')
+    // console.log(await cardTitleLocator.nth(0).textContent()) //this will only print the first element text and test will not fail
+    // console.log(await cardTitleLocator.first().textContent()) //same purpose as above
+    // console.log(await cardTitleLocator.nth(1).textContent()) // seconds element's text
+    // console.log(await cardTitleLocator.last().textContent()) //value of the last element in the element array
+
+    // print text for all the element in the elements array
+    const allTitles = await cardTitleLocator.allTextContents()  // .allTextContents() will not wait like .textContent() and will return the 0 elements array values. Hence get the textContent of first element before using the all
+    expect(allTitles.length).toBeGreaterThan(0);
+    console.log(allTitles)
+
+    //To overcome the above problem without using the .first element we can do it with wait
+    // await page.waitForLoadState('networkidle') //this will wait until the network finishes all the call and get the data. Please see TC001_ClientApp
+
+    // else if no network layer please Promise for waitForNavigation is used before clicking
+
 })
+
