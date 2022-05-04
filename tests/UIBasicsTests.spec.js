@@ -108,7 +108,7 @@ test('TC003_UI Controls', async ({ page }) => {
     await signinLocator.click();
 })
 
-test.only('TC004_Handeling child window/tab', async ({ browser }) => {
+test('TC004_Handeling child window/tab', async ({ browser }) => {
 
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -133,4 +133,6 @@ test.only('TC004_Handeling child window/tab', async ({ browser }) => {
     await userNameLocator.type('backToOriginalPage')
 
     //to start the test in debug mode, give npx playwright test --debug. This will open inspector from very first step of the test case
+
+    //codegen command for record and playback tests - npx playwright codegen https://www.google.com
 })
