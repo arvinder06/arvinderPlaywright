@@ -1,0 +1,2 @@
+1. page.on('dialog', dialog => dialog.accept());
+This will click Ok on any dialog, however, if I want to click ok on one dialog but want to handle further dislog differently, what should be done? Using  page.on('dialog', dialog => dialog.dismiss()); after this, I get error dialog.dismiss: Cannot dismiss dialog which is already handled!
