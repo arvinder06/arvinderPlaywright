@@ -352,3 +352,4 @@ test-results/
 playwright-report/
 .DS_Store
 package-lock.json
+state.json
