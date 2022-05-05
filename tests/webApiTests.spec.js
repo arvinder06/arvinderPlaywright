@@ -19,7 +19,7 @@ test.beforeAll(async () => {
 
 // })
 
-test.only('TC001_API Testing - Grab API response', async ({ page }) => {
+test.only('TC001_API Testing - Login via API and verify order on UI created via API', async ({ page }) => {
 
     // to inject the token in brower, playwright does not have any out of the box. We have to use javascript
     await page.addInitScript(value => {
@@ -29,5 +29,16 @@ test.only('TC001_API Testing - Grab API response', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/client');
     await page.waitForLoadState('networkidle'); //This will wait for network layer to be stable
 
+    await page.locator('button[routerlink="/dashboard/myorders"]').click();
 
+    await page.locator('tbody').waitFor();
+    const rows = await page.locator('table tr.ng-star-inserted th[scope]');
+    for (let i = 1; i < await rows.count(); i++) {
+        let element = await page.locator('table tr.ng-star-inserted th[scope]').nth(i);
+        if (await element.textContent() == response.orderID) {
+            await page.locator('table tr button.btn.btn-primary').nth(i).click();
+            break;
+        }
+    }
+    expect(await page.locator('div.col-text.-main').textContent()).toBe(response.orderID);
 })
