@@ -15,7 +15,7 @@ test.beforeAll(async ({ browser }) => {
     webcontext = await browser.newContext({ storageState: 'state.json' }) //this will inject the above stored state in the context and using this context, you can open as many pages in the various test cases
 })
 
-test.only('TC_Store browser state', async () => {
+test('TC_Store browser state', async () => {
     const page = await webcontext.newPage(); //
     // await page.pause();
     await page.goto('https://rahulshettyacademy.com/client');

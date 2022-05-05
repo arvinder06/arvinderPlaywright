@@ -13,7 +13,8 @@ const config = {
     browserName: 'chromium',
     headless: false,
     screenshot: 'retain-on-failure', //screenshot on every step in report
-    trace: 'retain-on-failure' // Log in report of every step and action performed for trace all tests give 'on'
+    // trace: 'retain-on-failure' // Log in report of every step and action performed for trace all tests give 'on'
+    trace: 'on'
   },
 };
 
