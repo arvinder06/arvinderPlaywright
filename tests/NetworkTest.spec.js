@@ -44,9 +44,19 @@ test.only('TC001_Intercep Network Call', async ({ page }) => {
         }
     );
 
-    await page.pause();
+    // await page.pause();
     await page.locator('button[routerlink="/dashboard/myorders"]').click();
-    const noOrderTextUI = await page.locator('div.mt-4.ng-star-inserted').textContent();
-    console.log(noOrderTextUI)
-    expect(noOrderTextUI).toContain(' You have No Orders to show at this time.')
+    await page.waitForLoadState('networkidle');
+
+    let noOrderTextUI;
+
+    // This will poll the object and wait for 10 sec to element change the text as expected. PLease see https://playwright.dev/docs/test-assertions#polling
+    await expect.poll(async () => {
+        noOrderTextUI = await page.locator('div.mt-4.ng-star-inserted').textContent();
+        return noOrderTextUI;
+    },
+        {
+            message: 'Polling to test the no order message on screen',
+            timeout: 10000
+        }).toContain('You have No Orders to show at this time.')
 })
