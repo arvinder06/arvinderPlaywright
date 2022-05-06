@@ -20,7 +20,7 @@ test.beforeAll(async () => {
 
 // })
 
-test.only('TC001_Intercep Network Call', async ({ page }) => {
+test('TC001_Intercep Network Call response', async ({ page }) => {
 
     // to inject the token in brower, playwright does not have any out of the box. We have to use javascript
     await page.addInitScript(value => {
@@ -59,4 +59,47 @@ test.only('TC001_Intercep Network Call', async ({ page }) => {
             message: 'Polling to test the no order message on screen',
             timeout: 10000
         }).toContain('You have No Orders to show at this time.')
+})
+
+test('TC002_Intercept Network request', async ({ page }) => {
+
+    await page.addInitScript(value => {
+        window.localStorage.setItem('token', value)
+    }, responseForToken.token);
+
+    await page.goto('https://rahulshettyacademy.com/client');
+    await page.waitForLoadState('networkidle');
+    await page.locator('button[routerlink="/dashboard/myorders"]').click();
+    await page.locator('tbody').waitFor();
+
+
+    // listen to the URL. Here we are intercepting the request to hit and query the order ID of someone else which the requetng user is not authorised for
+    await page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=" + responseForToken.orderID,
+        async route => route.continue( //.continue() method will repalce the request URL to the given one
+            {
+                url: 'https://rahulshettyacademy.com/api/ecom/order/get-orders-details?id=627427dee26b7e1a10e9fe43'
+            }
+        )
+    )
+
+    //Click on the first view
+    const rows = await page.locator('table tr.ng-star-inserted th[scope]');
+    for (let i = 1; i < await rows.count(); i++) {
+        let element = await page.locator('table tr.ng-star-inserted th[scope]').nth(i);
+        if (await element.textContent() == responseForToken.orderID) {
+            await page.locator('table tr button.btn.btn-primary').nth(i).click();
+            break;
+        }
+    }
+    expect(await page.locator('p.blink_me').textContent()).toBe('You are not authorize to view this order')
+})
+
+test.only('TC003_Abort the network call', async ({ page }) => { // Can be used to test the servers are down mimic etc
+
+    await page.route('**/*.css', route => route.abort())
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    await page.pause();
+    //     await page.waitForLoadState('networkidle');
+    //     await page.locator('button[routerlink="/dashboard/myorders"]').click();
+    //     await page.locator('tbody').waitFor();
 })
