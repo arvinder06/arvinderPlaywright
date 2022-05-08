@@ -96,10 +96,21 @@ test('TC002_Intercept Network request', async ({ page }) => {
 
 test.only('TC003_Abort the network call', async ({ page }) => { // Can be used to test the servers are down mimic etc
 
+    const userNameLocator = page.locator('input[name=username]');
+    const passwordLocator = page.locator('input[name=password]');
+    const signinLocator = page.locator('input[name=signin]');
+    const loginErrorTextLocator = page.locator("div[style*='display']");
+    const cardTitleLocator = page.locator('.card-body a')
+    const roleDropDownLocator = page.locator('select.form-control')
+
     await page.route('**/*.css', route => route.abort())
+    page.on('request', request => console.log(request.url())) //this will print all the request made on browser in the console
+    page.on('response', response => console.log(response.url(), '   :   ' + response.status())) //this will print the URL and status code for all the responses on network tab
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
-    await page.pause();
-    //     await page.waitForLoadState('networkidle');
-    //     await page.locator('button[routerlink="/dashboard/myorders"]').click();
-    //     await page.locator('tbody').waitFor();
+
+    //Enter Credentials
+    await userNameLocator.type("rahulshettyacademy");
+    await passwordLocator.fill("learning")
+    await signinLocator.click();
+    await page.waitForLoadState('networkidle');
 })
