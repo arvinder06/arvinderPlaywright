@@ -353,3 +353,5 @@ playwright-report/
 .DS_Store
 package-lock.json
 state.json
+screenshot.png
+onjectLevelScreenshot.png

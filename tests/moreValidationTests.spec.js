@@ -32,3 +32,21 @@ test('TC002_iFrame handeling', async ({ page }) => {
     await framePage.locator('li a[href="lifetime-access"]:visible').click(); //playwright will focus on the only visible locator among multiple locators with same locator
     expect(await framePage.locator('span[style="color: #ec5252;"]').textContent()).toBe('13,522');
 })
+
+test('TC003_Manual Screenshot', async ({ page }) => {
+    await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
+    await expect(page.locator('#displayed-text')).toBeVisible();
+    await page.locator('#displayed-text').screenshot({ path: 'objectLevelScreenshot.png' }) //manually take screenshot of the particular test
+    await page.locator('#hide-textbox').click();
+    await page.screenshot({ path: 'screenshot.png' }) //manually take screenshot of the whole page
+    await expect(page.locator('#displayed-text')).toBeHidden();
+
+})
+
+test.only('TC004_Visual Automation testing', async ({ page }) => {
+    // await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
+    // await page.locator('#hide-textbox').click();
+
+    await page.goto('https://www.google.com');
+    expect(await page.screenshot()).toMatchSnapshot('screenshot.png')
+})

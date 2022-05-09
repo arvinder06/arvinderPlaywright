@@ -94,7 +94,7 @@ test('TC002_Intercept Network request', async ({ page }) => {
     expect(await page.locator('p.blink_me').textContent()).toBe('You are not authorize to view this order')
 })
 
-test.only('TC003_Abort the network call', async ({ page }) => { // Can be used to test the servers are down mimic etc
+test('TC003_Abort the network call', async ({ page }) => { // Can be used to test the servers are down mimic etc
 
     const userNameLocator = page.locator('input[name=username]');
     const passwordLocator = page.locator('input[name=password]');
