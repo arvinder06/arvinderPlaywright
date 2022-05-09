@@ -43,7 +43,7 @@ test('TC003_Manual Screenshot', async ({ page }) => {
 
 })
 
-test.only('TC004_Visual Automation testing', async ({ page }) => {
+test('TC004_Visual Automation testing', async ({ page }) => {
     // await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     // await page.locator('#hide-textbox').click();
 
