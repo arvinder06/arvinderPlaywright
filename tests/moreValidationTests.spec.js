@@ -1,5 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
+test.describe.configure({ mode: 'parallel' }); // this will run all the tests cases in parallel with in this file
 test('TC_001-Pop up validations', async ({ page }) => {
 
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');

@@ -42,7 +42,7 @@ for (const data of dataSet) { //this is to run the same test for different set o
     })
 }
 
-customTest.only('TC_Customer test by extending the base object', async ({ page, testDataForAdidas }) => {
+customTest('TC_Customer test by extending the base object', async ({ page, testDataForAdidas }) => {
     const pageObectManager = new PageObjectManager(page);
 
     //Pages
