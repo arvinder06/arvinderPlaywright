@@ -12,6 +12,7 @@ class DashboardPage {
      * @param {String} productName 
      */
     async addProductToCart(productName) {
+        await this.page.waitForTimeout(5000);
         const count = await this.allProducts.count();
         for (let i = 0; i < count; i++) {
             if (await this.allProducts.nth(i).locator("b").textContent() == productName) {
