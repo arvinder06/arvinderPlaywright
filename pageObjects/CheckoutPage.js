@@ -15,7 +15,7 @@ class CheckoutPage {
 
         await this.allProductsInCart.first().waitFor();
         const isProductAvailable = await this.allProductsInCart.locator("h3:has-text('" + productname + "')")
-        expect(isProductAvailable).toBeTruthy();
+        expect(await isProductAvailable).toBeTruthy();
 
 
         // for (let i = 0; i < countProductsInCart; i++) {

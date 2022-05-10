@@ -4,6 +4,7 @@ class DashboardPage {
         this.allProducts = page.locator('.card-body');
         this.allProductsText = page.locator('.card-body b');
         this.cart = page.locator('[routerlink*=cart]');
+        this.orders = page.locator("button[routerlink*='myorders']");
     }
 
     /**
@@ -25,7 +26,12 @@ class DashboardPage {
      * To Navigate to the cart
      */
     async navigateToCart() {
-        await this.cart.click();
+        await this.cart.dispatchEvent('click')
+        await this.page.waitForLoadState('networkidle');
+    }
+
+    async navigateToOrders() {
+        await this.orders.click();
         await this.page.waitForLoadState('networkidle');
     }
 }
