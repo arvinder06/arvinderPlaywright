@@ -37,7 +37,7 @@ const config = {
       use: {
         browserName: 'chromium',
         ignoreHttpsErrors: true, //to tell playwright to handle if there will be any ssl certificate error on the browser
-        headless: false,
+        headless: true,
         screenshot: 'only-on-failure',
         trace: 'retain-on-failure',
         permissions: ['geolocation'], // to allow the geo location ... playwright will click the allow button

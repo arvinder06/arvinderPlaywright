@@ -27,3 +27,6 @@ Happy hacking! 🎭
 
 #To run using different config file
 npx playwright test --config playwright.config_Webkit.js
+
+#Run multiple tags in a same commands
+npx playwright test --config playwright.config_Projects.js --project=chrome --grep "@API|@Web"

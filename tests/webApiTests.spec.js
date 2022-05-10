@@ -19,7 +19,7 @@ test.beforeAll(async () => {
 
 // })
 
-test('TC001_API Testing - Login via API and verify order on UI created via API', async ({ page }) => {
+test('@API TC001_API Testing - Login via API and verify order on UI created via API', async ({ page }) => {
 
     // to inject the token in brower, playwright does not have any out of the box. We have to use javascript
     await page.addInitScript(value => {

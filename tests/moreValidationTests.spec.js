@@ -5,7 +5,7 @@ test.describe.configure({ mode: 'parallel' }); // this will run all the tests ca
 // test.describe.configure({ mode: 'serial' }); // This will make sure the tests will run on serial. from TC001 onwards. Moreover, when the one test fails the following tests will be skipped.
 //Use above when the one tests have dependency on the previous test
 
-test('TC_001-Pop up validations', async ({ page }) => {
+test('@Web TC_001-Pop up validations', async ({ page }) => { //tag used here
 
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     // await page.goto('https://www.google.com');
@@ -38,7 +38,7 @@ test('TC002_iFrame handeling', async ({ page }) => {
     expect(await framePage.locator('span[style="color: #ec5252;"]').textContent()).toBe('13,522');
 })
 
-test('TC003_Manual Screenshot', async ({ page }) => {
+test('@Web TC003_Manual Screenshot', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     await expect(page.locator('#displayed-text')).toBeVisible();
     await page.locator('#displayed-text').screenshot({ path: 'objectLevelScreenshot.png' }) //manually take screenshot of the particular test
