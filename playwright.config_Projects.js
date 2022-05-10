@@ -5,7 +5,7 @@ const config = {
   testDir: './tests', //Test specs directory
   timeout: 30 * 1000, //30 sec
   retries: 0, //to retry the failed tests
-  workers: 2, // how many test specs/files in parallel. This will not run the tests in parallel within the same file
+  workers: 100, // how many test specs/files in parallel. This will not run the tests in parallel within the same file
   expect: {
     timeout: 5000 // Time out for assertions
   },

@@ -1,6 +1,10 @@
 const { test, expect } = require('@playwright/test');
 
 test.describe.configure({ mode: 'parallel' }); // this will run all the tests cases in parallel with in this file
+
+// test.describe.configure({ mode: 'serial' }); // This will make sure the tests will run on serial. from TC001 onwards. Moreover, when the one test fails the following tests will be skipped.
+//Use above when the one tests have dependency on the previous test
+
 test('TC_001-Pop up validations', async ({ page }) => {
 
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
