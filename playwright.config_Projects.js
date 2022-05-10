@@ -18,7 +18,7 @@ const config = {
       name: 'safari',
       use: {
         browserName: 'webkit',
-        headless: false,
+        headless: true,
         screenshot: 'only-on-failure',
         trace: 'retain-on-failure'
       },
@@ -27,7 +27,7 @@ const config = {
       name: 'iphone11ProMax', //npx playwright test --config playwright.config_Projects.js --project=iphone11ProMax
       use: {
         browserName: 'webkit',
-        headless: false,
+        headless: true,
         screenshot: 'only-on-failure',
         trace: 'retain-on-failure',
         ...devices['iPhone 11 Pro Max'], //to open the browser in this phone demension
@@ -50,7 +50,7 @@ const config = {
       name: 'firefox',
       use: {
         browserName: 'firefox',
-        headless: false,
+        headless: true,
         screenshot: 'only-on-failure',
         trace: 'retain-on-failure'
       },
