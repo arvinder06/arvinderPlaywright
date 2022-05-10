@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-
+test.describe.configure({ mode: 'parallel' });
 // test('First PlayWright Test', async ({ browser, page }) => { //'{}' is required so that compiler knows that browser is a playwright fixture
 test('TC001_First PlayWright Test with manual context', async ({ browser }) => {
     //async have to be there when we are using await in the function

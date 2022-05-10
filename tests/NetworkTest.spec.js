@@ -19,7 +19,7 @@ test.beforeAll(async () => {
 // test.beforeEach(() => {
 
 // })
-
+test.describe.configure({ mode: 'parallel' });
 test('TC001_Intercep Network Call response', async ({ page }) => {
 
     // to inject the token in brower, playwright does not have any out of the box. We have to use javascript

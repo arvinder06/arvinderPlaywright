@@ -1,6 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
 //RSA = Rahul Shetty Academy
+test.describe.configure({ mode: 'parallel' });
 test('TC001_ClientApp_Pages with Neetwrok call_RSA Shopping Website', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/client')
 

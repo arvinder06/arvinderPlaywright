@@ -1,7 +1,7 @@
 const { test, expect, request } = require('@playwright/test')
 let webcontext;
 // when there is a need to store the complete state of a browser (eg cokkies, local storage etc) and inject in a new page, it is easy with playwright
-
+test.describe.configure({ mode: 'parallel' });
 test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();

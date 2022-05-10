@@ -355,3 +355,5 @@ package-lock.json
 state.json
 screenshot.png
 onjectLevelScreenshot.png
+allure-report
+allure-results

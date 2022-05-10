@@ -4,12 +4,13 @@ const { devices } = require('@playwright/test');
 const config = {
   testDir: './tests', //Test specs directory
   timeout: 30 * 1000, //30 sec
-  retries: 0, //to retry the failed tests
+  retries: 1, //to retry the failed tests
   workers: 100, // how many test specs/files in parallel. This will not run the tests in parallel within the same file
   expect: {
     timeout: 5000 // Time out for assertions
   },
   reporter: 'html',
+  // reporter: [['allure-playwright', { outputFolder: 'allure-results' }]],
   projects: [ //to run the different configuration we can make multiple projects. Using this we can prevent having different condig files
     // npx playwright test --config playwright.config_Projects.js --project=firefox
     //if no project given in command, all projects will run

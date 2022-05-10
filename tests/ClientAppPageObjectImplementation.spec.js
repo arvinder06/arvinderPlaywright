@@ -3,6 +3,7 @@ const { PageObjectManager } = require('../pageObjects/PageObjectManager');
 const dataSet = JSON.parse(JSON.stringify(require('../test-data/placeOrderTestData.json'))) // JSON FIle --> String --> JS Object to traverse easily
 const { customTest } = require('../Fixtures/baseTest')
 
+test.describe.configure({ mode: 'parallel' });
 for (const data of dataSet) { //this is to run the same test for different set of data from json
     test(`TC001_ClientApp_Pages with Neetwrok call_RSA Shopping Website for product ${data.productName}`, async ({ page }) => { // The test name should be unique else playwright will throw error
         const pageObectManager = new PageObjectManager(page);

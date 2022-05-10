@@ -30,3 +30,10 @@ npx playwright test --config playwright.config_Webkit.js
 
 #Run multiple tags in a same commands
 npx playwright test --config playwright.config_Projects.js --project=chrome --grep "@API|@Web"
+
+
+# Allure reporting commands
+Install : npm i -D @playwright/test allure-playwright
+Test: npx playwright test --reporter=line,allure-playwright
+Generate Report: allure generate ./allure-results --clean
+Open report: allure open ./allure-report

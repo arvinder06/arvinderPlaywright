@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/arvinder06/arvinderPlaywright#readme",
   "devDependencies": {
-    "@playwright/test": "^1.21.1"
+    "@playwright/test": "^1.21.1",
+    "allure-playwright": "^2.0.0-beta.16"
   }
 }
