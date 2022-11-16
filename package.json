@@ -1,0 +1,31 @@
+{
+  "name": "arvinderplaywright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "npm cache clean --force && del-cli --force allure-report && del-cli --force allure-results && del-cli --force playwright-report && del-cli --force test-results && del-cli --force state.json && del-cli --force *.png",
+    "regression": "npx playwright test",
+    "webTests": "npx playwright test --grep @Web",
+    "apiTests": "npx playwright test --grep @API",
+    "chomeProject": "npx playwright test --config playwright.config_Projects.js --project=chrome",
+    "iphoneTests": "npx playwright test --config playwright.config_Projects.js --project=iphone11ProMax",
+    "report": "npx playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvinder06/arvinderPlaywright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvinder06/arvinderPlaywright/issues"
+  },
+  "homepage": "https://github.com/arvinder06/arvinderPlaywright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.21.1",
+    "allure-playwright": "^2.0.0-beta.16",
+    "del-cli": "^4.0.1"
+  }
+}
